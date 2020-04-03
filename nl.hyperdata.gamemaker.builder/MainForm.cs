@@ -27,7 +27,7 @@ namespace nl.hyperdata.gamemaker.builder
         private void bt_GameMakerProject_Click(object sender, EventArgs e)
         {
             var file = ChooseFile();
-            toolTip.SetToolTip(sender as Control,file);
+            toolTip.SetToolTip(sender as Control, file);
             string path = Path.GetDirectoryName(file);
 
             ResourceProvider provider = new ResourceProvider(file);
@@ -38,15 +38,35 @@ namespace nl.hyperdata.gamemaker.builder
                 .FirstOrDefault();
 
 
-       
+
 
             foreach (var item in provider.Resources.AllExtensionNames().Distinct())
             {
-                listBox1.Items.Add(item);
+                extensionList.Items.Add(item);
             }
 
             provider.SaveChanges();
 
+        }
+
+        private void bt_Process_Click(object sender, EventArgs e)
+        {
+            if(extensionList.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(extensionList.SelectedItem.ToString(),
+                                    "Are you sure to update this extension?",
+                                     MessageBoxButtons.OKCancel);
+            if (confirmResult == DialogResult.OK)
+            {
+                
+            }
+            else
+            {
+                
+            }
         }
 
         private void bt_DllExportFile_Click(object sender, EventArgs e)
@@ -77,14 +97,9 @@ namespace nl.hyperdata.gamemaker.builder
             return "n/a";
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void extensionList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            bt_Process.Enabled = extensionList.SelectedIndex >= 0;
         }
     }
 }

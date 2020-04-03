@@ -35,7 +35,9 @@
             this.bt_GameMakerProject = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.extensionList = new System.Windows.Forms.ListBox();
+            this.bt_Process = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -79,30 +81,54 @@
             this.toolTip.IsBalloon = true;
             this.toolTip.OwnerDraw = true;
             // 
-            // listBox1
+            // extensionList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(30, 188);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(432, 229);
-            this.listBox1.TabIndex = 5;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.extensionList.FormattingEnabled = true;
+            this.extensionList.ItemHeight = 25;
+            this.extensionList.Location = new System.Drawing.Point(30, 230);
+            this.extensionList.Name = "extensionList";
+            this.extensionList.Size = new System.Drawing.Size(419, 229);
+            this.extensionList.TabIndex = 5;
+            this.extensionList.SelectedIndexChanged += new System.EventHandler(this.extensionList_SelectedIndexChanged);
+            // 
+            // bt_Process
+            // 
+            this.bt_Process.Enabled = false;
+            this.bt_Process.Location = new System.Drawing.Point(30, 470);
+            this.bt_Process.Name = "bt_Process";
+            this.bt_Process.Size = new System.Drawing.Size(432, 46);
+            this.bt_Process.TabIndex = 6;
+            this.bt_Process.Text = "Update GameMaker";
+            this.bt_Process.UseVisualStyleBackColor = true;
+            this.bt_Process.Click += new System.EventHandler(this.bt_Process_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 197);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(204, 25);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "select an extension:";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 542);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.bt_Process);
+            this.Controls.Add(this.extensionList);
             this.Controls.Add(this.bt_GameMakerProject);
             this.Controls.Add(this.bt_DllExportFile);
             this.Controls.Add(this.bt_DllExtensionFile);
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "GameMaker Extension Builder";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -114,7 +140,9 @@
         private System.Windows.Forms.Button bt_GameMakerProject;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox extensionList;
+        private System.Windows.Forms.Button bt_Process;
+        private System.Windows.Forms.Label label1;
     }
 }
 
