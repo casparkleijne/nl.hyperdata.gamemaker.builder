@@ -14,9 +14,16 @@ namespace nl.hyperdata.gamemaker.builder
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ErrorHandler);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+        }
+
+        private static void ErrorHandler(object sender, UnhandledExceptionEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

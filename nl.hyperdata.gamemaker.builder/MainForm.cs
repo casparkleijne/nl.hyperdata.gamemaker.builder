@@ -1,12 +1,6 @@
-﻿using nl.hyperdata.gamemaker.builder.GameMaker;
+﻿using nl.hyperdata.gamemaker.yy.Resources;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,39 +13,21 @@ namespace nl.hyperdata.gamemaker.builder
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bt_GameMakerProject_Click(object sender, EventArgs e)
+        private async void bt_GameMakerProject_Click(object sender, EventArgs e)
         {
             var file = ChooseFile();
             toolTip.SetToolTip(sender as Control, file);
-            string path = Path.GetDirectoryName(file);
-
             ResourceProvider provider = new ResourceProvider(file);
 
-            provider.LoadFromFile();
-            var u = provider.Resources
-                .AllExtensions()
-                .FirstOrDefault();
+            var result = await provider.GameResource();
+            var resources = result.Resources().Extensions();
 
-
-
-
-            foreach (var item in provider.Resources.AllExtensionNames().Distinct())
-            {
-                extensionList.Items.Add(item);
-            }
-
-            provider.SaveChanges();
-
+            
         }
 
         private void bt_Process_Click(object sender, EventArgs e)
         {
-            if(extensionList.SelectedIndex < 0)
+            if (extensionList.SelectedIndex < 0)
             {
                 return;
             }
@@ -59,13 +35,14 @@ namespace nl.hyperdata.gamemaker.builder
             var confirmResult = MessageBox.Show(extensionList.SelectedItem.ToString(),
                                     "Are you sure to update this extension?",
                                      MessageBoxButtons.OKCancel);
+
             if (confirmResult == DialogResult.OK)
             {
-                
+
             }
             else
             {
-                
+
             }
         }
 

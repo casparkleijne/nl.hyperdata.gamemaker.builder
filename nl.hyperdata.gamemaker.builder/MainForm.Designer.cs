@@ -126,7 +126,6 @@
             this.Name = "MainForm";
             this.Text = "GameMaker Extension Builder";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
